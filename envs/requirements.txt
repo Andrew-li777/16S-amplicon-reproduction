@@ -1,0 +1,7 @@
+# Python Runtime Specification for reproduction/16S
+# ==============================================================================
+# 本项目的总调度器 (repro_scripts/run_all.py) 与自动化验收门禁 (repro_scripts/verify_outputs.py)
+# 均严格采用 Python 3.13+ 标准库编写（零第三方依赖），确保在任意宿主机环境零编译障碍运行。
+#
+# 可选辅助包（仅用于人工交互式校验 config.yaml 语法时使用，非运行必需）：
+# pyyaml>=6.0.1

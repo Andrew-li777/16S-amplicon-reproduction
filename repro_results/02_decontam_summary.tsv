@@ -1,0 +1,7 @@
+Metric	Value
+MUClite_Total_Samples	569
+MUClite_True_Samples	539
+MUClite_Negative_Controls	30
+MUClite_Total_Taxa	1951
+Decontam_Flagged_Contaminants	56
+Decontam_Threshold	0.10

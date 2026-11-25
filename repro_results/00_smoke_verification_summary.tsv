@@ -1,0 +1,10 @@
+Metric	Value
+Smoke_Samples_Total	24
+Smoke_ASVs_Total	40
+Naive_TSS_False_Positives	35
+CLR_False_Positives	0
+True_Diff_Recovered_CLR	3
+Kitome_Contaminants_Flagged	2
+Kitome_False_Positives	0
+Random_Seed	20261125
+Smoke_Status	PASS

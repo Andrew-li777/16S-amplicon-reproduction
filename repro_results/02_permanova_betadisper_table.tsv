@@ -1,0 +1,5 @@
+Distance_Metric	PERMANOVA_F	PERMANOVA_R2	PERMANOVA_P	Betadisper_P	Dispersion_Homogeneous
+Bray-Curtis (Rarefied)	12.6763	0.4272	0.001	0.008	FALSE
+Weighted UniFrac (Rarefied)	10.4814	0.3814	0.001	0.041	FALSE
+Unweighted UniFrac (Rarefied)	9.5388	0.3594	0.001	0.905	TRUE
+Aitchison CLR (Unrarefied)	8.0007	0.32	0.001	0.173	TRUE

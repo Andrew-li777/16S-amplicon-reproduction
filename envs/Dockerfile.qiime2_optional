@@ -1,0 +1,19 @@
+# ==============================================================================
+# Optional Isolated Container Reference for CLI 16S Comparison (QIIME 2 + PICRUSt2)
+# 说明: 本工作区主力双轨采用宿主机纯原生 R 4.6.0 / Bioconductor 3.23 跑通；
+#       若后续需要在 Linux Docker 中横向对照 QIIME 2 (.qza/.qzv) 或 PICRUSt2 CLI，
+#       可基于官方 QIIME 2 Amplicon 镜像构建独立容器并与本机 R 环境完全隔离。
+# ==============================================================================
+FROM quay.io/qiime2/amplicon:2024.10
+
+LABEL maintainer="Bio-Repro Unified Pipeline Blueprint v1.0"
+LABEL description="Optional QIIME 2 Amplicon + q2-picrust2 comparison container for reproduction/16S"
+
+WORKDIR /workspace
+
+# 验证核心 QIIME 2 插件与 Cutadapt / DADA2 可用性
+RUN qiime --version && \
+    qiime cutadapt --help >/dev/null && \
+    qiime dada2 --help >/dev/null
+
+CMD ["bash"]

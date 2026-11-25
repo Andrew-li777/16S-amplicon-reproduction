@@ -1,0 +1,13 @@
+Metric	Value
+MiSeq_Final_Samples	19
+MiSeq_Clean_ASVs	214
+Rarefaction_Depth	2516
+Median_Shannon_Early	3.6923
+Median_Shannon_Late	3.3598
+Shannon_Wilcoxon_P	0.13330
+FaithPD_Wilcoxon_P	0.35623
+Bray_PERMANOVA_R2	0.4272
+Bray_PERMANOVA_P	0.00100
+Bray_Betadisper_P	0.00800
+WeightedUniFrac_PERMANOVA_R2	0.3814
+Aitchison_PERMANOVA_R2	0.3200

@@ -1,0 +1,96 @@
+{
+  "project": "16S_amplicon_dual_track",
+  "mode": "full",
+  "status": "PASS",
+  "total_files": 14,
+  "failure_count": 0,
+  "failures": [],
+  "checks": [
+    {
+      "path": "repro_results/00_smoke_verification_summary.tsv",
+      "status": "PASS",
+      "details": [
+        "Smoke_Status == 'PASS' (got 'PASS')"
+      ]
+    },
+    {
+      "path": "repro_results/01_mock_accuracy_summary.tsv",
+      "status": "PASS",
+      "details": [
+        "Mock_Inferred_ASVs == '20' (got '20')",
+        "Mock_Exact_Matches == '20' (got '20')",
+        "Mock_False_Positives == '0' (got '0')",
+        "Nonchim_Read_Ratio=0.96404 within bounds"
+      ]
+    },
+    {
+      "path": "repro_results/01_dada2_read_tracking.tsv",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "path": "repro_results/01_fastq_quality_profiles.png",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "path": "repro_results/01_dada2_error_models.png",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "path": "repro_results/01_dada2_read_retention.png",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "path": "repro_results/02_diversity_stats_summary.tsv",
+      "status": "PASS",
+      "details": [
+        "MiSeq_Final_Samples == '19' (got '19')",
+        "Bray_PERMANOVA_R2=0.4272 within bounds",
+        "Bray_PERMANOVA_P=0.001 within bounds"
+      ]
+    },
+    {
+      "path": "repro_results/02_beta_pcoa_4metrics_defense.png",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "path": "repro_results/03_daa_method_comparison.tsv",
+      "status": "PASS",
+      "details": [
+        "Consensus_2plus_Genera=8.0 within bounds"
+      ]
+    },
+    {
+      "path": "repro_results/03_daa_consensus_and_effect_sizes.png",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "path": "repro_results/04_microeco_summary.tsv",
+      "status": "PASS",
+      "details": [
+        "Microeco_Samples == '90' (got '90')",
+        "RF_OOB_Accuracy=0.9556 within bounds"
+      ]
+    },
+    {
+      "path": "repro_results/04_microeco_network_and_zipi.png",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "path": "repro_results/04_microeco_dbrda_faprotax_rf.png",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "path": "repro_results/environment_versions.tsv",
+      "status": "PASS",
+      "details": []
+    }
+  ]
+}

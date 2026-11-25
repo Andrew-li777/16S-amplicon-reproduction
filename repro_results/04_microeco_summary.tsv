@@ -1,0 +1,12 @@
+Metric	Value
+Microeco_Samples	90
+Microeco_ASVs	404
+Network_Nodes	201
+Network_Edges	856
+Network_Modules	12
+Network_Modularity	0.6005
+Keystone_Module_Hubs	1
+Keystone_Connectors	0
+Keystone_Network_Hubs	0
+FAPROTAX_Functions	35
+RF_OOB_Accuracy	0.9556

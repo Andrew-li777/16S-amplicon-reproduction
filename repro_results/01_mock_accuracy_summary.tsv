@@ -1,0 +1,8 @@
+Metric	Value
+Mock_Reference_Strains	32
+Mock_Inferred_ASVs	20
+Mock_Exact_Matches	20
+Mock_False_Positives	0
+Mock_Total_Reads	4269
+Nonchim_Read_Ratio	0.96404
+Total_ASVs_Before_Filter	232

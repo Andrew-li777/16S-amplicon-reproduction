@@ -1,0 +1,71 @@
+# ==============================================================================
+# Bio-Repro Unified Pipeline Blueprint v1.0 — 16S Amplicon .gitignore
+# 原则: 屏蔽大体积测序/参考库/中间对象与上游克隆 -> 放行各级 README 与轻量结果 -> 末尾屏蔽私人笔记
+# ==============================================================================
+
+# 1. OS / IDE / Language Runtime Artifacts
+.DS_Store
+Thumbs.db
+**/__MACOSX/
+__pycache__/
+*.py[cod]
+.venv/
+.Rproj.user
+*.Rproj
+.Rhistory
+.RData
+.Ruserdata
+Rplots.pdf
+
+# 2. Large Raw & Processed 16S Bioinformatics Data
+*.zip
+*.tar.gz
+*.gz
+*.fastq
+*.fq
+*.fasta
+*.fa
+*.qza
+*.qzv
+*.biom
+*.nwk
+*.tre
+*.rds
+*.RDS
+*.RData
+*.sqlite
+*.db
+data/raw/**
+!data/raw/README.md
+!data/raw/.gitkeep
+data/processed/**
+!data/processed/README.md
+!data/processed/.gitkeep
+!data/processed/smoke_*.tsv
+
+# 3. Upstream Reference Clones & Local Run Logs
+upstream_*/
+logs/*.log
+!logs/.gitkeep
+!logs/sessionInfo.txt
+
+# 4. Whitelist Reviewable Results & Documentation
+!**/README.md
+!repro_results/**/*.png
+!repro_results/*.png
+!repro_results/**/*.tsv
+!repro_results/*.tsv
+!repro_results/**/*.txt
+!repro_results/*.txt
+!repro_results/**/*.json
+!repro_results/*.json
+
+# 5. Private Interview / Resume / Showcase Notes (MUST Stay at Bottom to Win)
+*/**/*[Ii][Nn][Tt][Ee][Rr][Vv][Ii][Ee][Ww]*.md
+*/**/*面试*.md
+*/**/*答辩*.md
+*/**/*项目复盘*.md
+*/**/*STAR*.md
+*/**/*简历*.md
+*/**/*话术*.md
+*/**/*[Ss][Hh][Oo][Ww][Cc][Aa][Ss][Ee]*.md

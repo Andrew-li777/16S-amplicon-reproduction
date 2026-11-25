@@ -1,0 +1,88 @@
+# ==============================================================================
+# Bio-Repro Unified Pipeline Blueprint v1.0 — 16S Amplicon Configuration
+# ==============================================================================
+
+project:
+  name: "16S_amplicon_dual_track"
+  omics_domain: "microbiome_16S_amplicon"
+  upstream_reference: "benjjneb/dada2 MiSeq SOP + Mothur MiSeq_SOP"
+  downstream_references:
+    - "ChiLiubio/microeco (Nature Protocols 2025/2026, DOI: 10.1038/s41596-025-01239-4)"
+    - "FrederickHuangLin/ANCOMBC (ANCOM-BC2)"
+    - "biobakery/maaslin3 (Nature Methods 2025/2026, DOI: 10.1038/s41592-025-02923-9)"
+    - "benjjneb/decontam (low-biomass decontamination)"
+  dataset_accessions:
+    - "Mothur MiSeq_SOP (20 mouse gut V4 samples + HMP Mock)"
+    - "Zenodo-14169026 (SILVA nr99 v138.2 DADA2 reference)"
+    - "microeco built-in dataset (90 wetland 16S samples + env_data_16S)"
+
+reproducibility:
+  random_seed: 20261125
+  strict_fail_fast: true
+  max_threads: 4
+  windows_r_filter_multithread: false       # filterAndTrim uses mclapply -> must stay FALSE on Windows
+  windows_ancombc2_n_cl: 1                  # Avoid Windows PSOCK cluster stall in ANCOM-BC2
+
+paths:
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
+  results_dir: "repro_results"
+  logs_dir: "logs"
+  contract_file: "ground_truth_contract.json"
+
+modes:
+  default: "smoke"
+  smoke:
+    description: "10秒确定性冒烟测试（成分闭合效应 vs CLR + 阴性对照去污染断言）"
+    steps: ["00_smoke_test"]
+  quick:
+    description: "跳过耗时 FASTQ 降噪与系统发育建树，复用 01_ps_miseq.rds 重算全部下游统计与图表"
+    steps:
+      - "02_decontam_and_diversity"
+      - "03_daa_ancombc2_maaslin3_lefse"
+      - "04_microeco_network_and_func"
+  full:
+    description: "端到端双轨全量重算（FASTQ -> DADA2 -> Mock -> SILVA -> Tree -> 下游全分析 + 验收门禁）"
+    steps:
+      - "00_smoke_test"
+      - "01_dada2_fastq_to_phyloseq"
+      - "02_decontam_and_diversity"
+      - "03_daa_ancombc2_maaslin3_lefse"
+      - "04_microeco_network_and_func"
+
+preflight_inputs:
+  smoke: []
+  quick:
+    - path: "data/processed/01_ps_miseq.rds"
+      download_hint: "请先运行 `--mode full` 从原始 MiSeq_SOP FASTQ 生成 01_ps_miseq.rds"
+  full: []   # 01_dada2_fastq_to_phyloseq.R 支持自动下载并缓存 MiSeq_SOP 与 SILVA v138.2 至 data/raw/
+
+dada2_params:
+  miseq_sop_url: "https://mothur.s3.us-east-2.amazonaws.com/wiki/miseqsopdata.zip"
+  silva_genus_url: "https://zenodo.org/api/records/14169026/files/silva_nr99_v138.2_toGenus_trainset.fa.gz/content"
+  silva_species_url: "https://zenodo.org/api/records/14169026/files/silva_v138.2_assignSpecies.fa.gz/content"
+  silva_genus_fallback_url: "https://zenodo.org/api/records/4587955/files/silva_nr99_v138.1_train_set.fa.gz/content"
+  silva_species_fallback_url: "https://zenodo.org/api/records/4587955/files/silva_species_assignment_v138.1.fa.gz/content"
+  trunc_len_f: 240
+  trunc_len_r: 160
+  max_ee_f: 2
+  max_ee_r: 2
+  trunc_q: 2
+  min_overlap: 12
+  chimera_method: "consensus"
+
+thresholds:
+  prevalence_cutoff: 0.10
+  fdr_cutoff: 0.05
+  permutations: 999
+  require_nonempty_control: true
+  network_cor_method: "spearman"
+  network_cor_cut: 0.65
+  network_p_thres: 0.01
+  zipi_zi_cutoff: 2.5
+  zipi_pi_cutoff: 0.62
+
+external_resources:
+  allow_offline_fallback: true
+  download_timeout_sec: 600
+  fallback_behavior: "use_zenodo_v138_1_or_cached_raw"
